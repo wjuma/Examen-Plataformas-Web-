@@ -1,0 +1,25 @@
+{
+  "name": "juma_examen",
+  "version": "1.0.0",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Wendy Juma",
+  "license": "ISC",
+  "dependencies": {
+    "colors": "^1.4.0",
+    "csv-parser": "^2.3.2",
+    "yargs": "^15.3.1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wjuma/Examen_PW.git"
+  },
+  "bugs": {
+    "url": "https://github.com/wjuma/Examen_PW/issues"
+  },
+  "homepage": "https://github.com/wjuma/Examen_PW#readme",
+  "devDependencies": {},
+  "description": ""
+}
