@@ -7,7 +7,7 @@ switch (comando) {
         buscar.publicar(argv.archivo, argv.pais, argv.anio);
         break;
     case "guardar":
-        control.guardar(argv.archivo, argv.pais, argv.anio, arg.guardar);
+        buscar.guardar(argv.archivo, argv.pais, argv.anio, argv.guardar);
         break;
     default:
         console.log("Comando no reconocido");
