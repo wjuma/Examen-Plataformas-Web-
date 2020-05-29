@@ -30,7 +30,7 @@ let getE = async(archivo, pais, anio) => {
     console.log(doc);
     let val = await validar(pais, anio);
 
-    vectotal.push(await verXanio(anio));
+    vectotal.push(await verXanio(archivo, anio, pais));
 
     return vectotal;
 };
@@ -50,7 +50,7 @@ const validar = async(pais, anio) => {
         throw new Error("Codigo de Pais no encontrado".red);
 };
 
-const verXanio = async(anio, pais) => {
+const verXanio = async(archivo, anio, pais) => {
     let acum = 0;
     let tam = tareaPorHAcer.length - 4;
     vec = [];
@@ -60,9 +60,11 @@ const verXanio = async(anio, pais) => {
     for (let i = 4; i < tareaPorHAcer.length; i++) {
         valor = parseInt(tareaPorHAcer[i][anio]);
         //vec.push(valor);
-    }
-    for (let j = 0; j < tareaPorHAcer.length; j++) {
-        val = tareaPorHAcer[j][2];
+        for (let j = 0; j < tareaPorHAcer.length; j++) {
+            val = tareaPorHAcer[j][2];
+            val1 = tareaPorHAcer[j][4];
+            val2 = tareaPorHAcer[j][0];
+        }
     }
 
     let datos = {
@@ -75,9 +77,9 @@ const verXanio = async(anio, pais) => {
 
     console.log("\n-------DATOS--------".red);
     console.log(`Datos: ${val}`.green);
-    console.log(`Pais: ${val}`);
+    console.log(`Pais: ${val2}`);
     console.log(`Año: ${tareaPorHAcer[3][anio]} `.yellow);
-    console.log(`Valor:`);
+    console.log(`Valor: ${val1}`);
 
     return vec;
 };

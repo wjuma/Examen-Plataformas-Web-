@@ -4,28 +4,47 @@ const est = require("./controlador");
 //const pag = require("./config/lista");
 let tareaPorHAcer = [];
 
-const publicar = (file, country, year) => {
+const publicar = (archivo, pais, anio) => {
     est
-        .getE(file, country, year)
+        .getE(archivo, pais, anio)
         .then((v) => v)
         .catch((msg) => console.log(msg.message));
 };
-const guardar = (file, country, year) => {
+const guardar = (archivo, pais, anio, guardar) => {
     est
-        .getE(file, country, year)
-        .then((v) => escribirjson(country, year, v))
+        .getE(archivo, pais, anio)
+        .then((v) => escribirtxt(pais, anio, v))
         .catch((msg) => console.log(msg.message));
 };
 //Guardando en json
-const escribirjson = (country, year, vect) => {
+const escribirtxt = (pais, anio, vect) => {
     let data = vect;
-    fs.writeFile(`./resultados/${country}-${year}.txt`, data, (err) => {
+    fs.writeFile(`./resultados/${pais}-${anio}.txt`, data, (err) => {
         if (err) throw new Error("No se pudo grabar", err);
     });
     console.log(
-        `\nEl archivo se a guardado exitodamente:/resultados ${country}-${year}`
+        `\nEl archivo se a guardado exitodamente:/resultados ${pais}-${anio}`
         .magenta
     );
+};
+let crearArchivo = (base, limite) => {
+    return new Promise((resolve, reject) => {
+        //si base no es un numero
+        if (!Number(base)) {
+            reject(`El valor introducido ${base} no es numero`); // el rejct sigue ejecutnado
+            return; // para que ya no siga ejecutantdo
+        }
+        // aqui guardamos nuestra tabla
+        let data = "";
+        for (let i = 1; i <= limite; i = i + 1) {
+            data += `${base} * ${i} = ${base * i}\n`; //+= para concatenera
+        }
+
+        fs.writeFile(`tablas/tabla-${base}--al-${limite}.txt`, data, (err) => {
+            if (err) reject(err);
+            else resolve(`La tabla ${base}--al-${limite}.txt`);
+        });
+    });
 };
 
 module.exports = {
